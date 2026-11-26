@@ -334,7 +334,6 @@ export class AircraftVisual {
     const windscreen = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.1, 0.94), cream);
     windscreen.position.set(0, 1.02, -1.32);
     windscreen.rotation.x = -0.3;
-    this.windscreen = windscreen;
     this.group.add(windscreen);
 
     const stripe = new THREE.Mesh(new THREE.CylinderGeometry(0.81, 0.81, 0.38, 10, 1, true), coral);

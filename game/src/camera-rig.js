@@ -3,12 +3,11 @@
 
 import * as THREE from '../vendor/three.module.min.js';
 import { CAMERA } from './config.js';
-import { heightAt, surfaceHeightAt } from './terrain.js';
+import { surfaceHeightAt } from './terrain.js';
 import { clamp, damp } from './math-utils.js';
 
 const WORLD_UP = new THREE.Vector3(0, 1, 0);
 const localEye = new THREE.Vector3();
-const localLook = new THREE.Vector3();
 const desiredPosition = new THREE.Vector3();
 const desiredLook = new THREE.Vector3();
 const temp = new THREE.Vector3();

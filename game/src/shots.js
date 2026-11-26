@@ -38,27 +38,6 @@ function simulate(ctx, frames, options = {}) {
   }
 }
 
-function refresh(ctx) {
-  const { flight, cameraRig, aircraft, hud, gameState, sky, ocean, worldProps, screens } = ctx;
-  const state = flight.state;
-  aircraft.group.position.copy(state.position);
-  aircraft.group.quaternion.copy(state.quaternion);
-  aircraft.update(1 / 60, { ...state, cockpitView: cameraRig.mode === 'cockpit' }, flight.controls);
-  sky.focus(state.position);
-  sky.update(1 / 60, ctx.camera.position);
-  ocean.setSun(sky.sunDirection, sky.sun.color);
-  ocean.setTime(34);
-  ocean.update(0);
-  worldProps.update(1 / 60, state.position, ctx.camera.position);
-  hud.update(0.016, {
-    state,
-    active: gameState.mission,
-    camera: ctx.camera,
-    gameState,
-  });
-  screens.hideCompactResult();
-}
-
 function setTarget(active, vector, label) {
   active.target = vector ? new THREE.Vector3(vector.x, vector.y, vector.z) : null;
   active.targetLabel = label;
@@ -124,7 +103,6 @@ function stageCover(ctx) {
     cargoWeight: 160,
   });
   simulate(ctx, 90);
-  const state = ctx.flight.state;
   active.cargo = 2;
   active.hasTakenOff = true;
   active.clockRunning = true;
@@ -138,7 +116,6 @@ function stageCover(ctx) {
   ctx.gameState.mission = active;
   radio(ctx, 'Kestrel Two, Cinder Tower. Cleared to land runway zero-nine.', 'CINDER TOWER');
   harmonise(ctx);
-  void state;
 }
 
 function stageCockpit(ctx) {

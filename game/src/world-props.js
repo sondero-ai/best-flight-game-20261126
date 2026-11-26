@@ -129,6 +129,13 @@ function buildRunway(airport, group, glowTexture, lightMeshes) {
     number.rotation.z = Number(heading) === 90 ? -Math.PI / 2 : Math.PI / 2;
     number.position.set(baseX + dir * 55, y + 0.3, airport.centerZ);
     group.add(number);
+    const sign = new THREE.Mesh(
+      new THREE.PlaneGeometry(10, 7),
+      new THREE.MeshBasicMaterial({ map: makeNumberTexture(threshold.label), transparent: true, side: THREE.DoubleSide, depthWrite: false }),
+    );
+    sign.position.set(baseX + dir * 65, y + 4.2, airport.centerZ + width / 2 + 7);
+    sign.rotation.y = Number(heading) === 90 ? -Math.PI / 2 : Math.PI / 2;
+    group.add(sign);
   }
 
   // Edge lights and their additive halos.

@@ -2,7 +2,7 @@
 // overlays aligned to the fixed stage; buttons and cards call back into the app controller.
 
 import { MISSIONS } from './mission-catalog.js';
-import { formatClock, formatDuration } from './math-utils.js';
+import { formatClock } from './math-utils.js';
 
 const MEDAL_LABEL = { gold: 'GOLD', silver: 'SILVER', bronze: 'BRONZE' };
 
@@ -402,8 +402,4 @@ export class Screens {
     return false;
   }
 
-  updateResultMeta(result) {
-    this.lastResult = result;
-    void formatDuration;
-  }
 }

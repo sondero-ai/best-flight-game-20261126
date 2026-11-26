@@ -18,7 +18,7 @@ import { Screens } from './screens.js';
 import { AudioEngine } from './audio-engine.js';
 import { Input } from './input.js';
 import { applyShot } from './shots.js';
-import { clamp, formatClock } from './math-utils.js';
+import { clamp } from './math-utils.js';
 
 const stage = document.querySelector('#stage');
 const canvas = document.querySelector('#scene');
@@ -514,28 +514,6 @@ function installQa() {
       globalThis.__shotReady = false;
       return true;
     },
-    hideAircraft() {
-      aircraft.group.visible = false;
-      return true;
-    },
-    hideChildren(start, end) {
-      aircraft.group.children.slice(start, end).forEach((child) => { child.visible = false; });
-      return aircraft.group.children.length;
-    },
-    hidePart(name) {
-      const parts = { wing: aircraft.wing, windscreen: aircraft.windscreen, canopy: aircraft.canopy, prop: aircraft.prop, fuselage: aircraft.group.getObjectByName('fuselage') };
-      if (parts[name]) parts[name].visible = false;
-      return Boolean(parts[name]);
-    },
-    debugCamera(px, py, pz, tx, ty, tz, fov = 56) {
-      camera.position.set(px, py, pz);
-      camera.fov = fov;
-      camera.updateProjectionMatrix();
-      camera.lookAt(tx, ty, tz);
-      camera.updateMatrixWorld();
-      renderer.render(scene, camera);
-      return { position: camera.position.toArray(), fov: camera.fov };
-    },
     snapshot() {
       const active = missionManager.active;
       return {
@@ -622,7 +600,6 @@ function installQa() {
     enumerable: true,
     configurable: false,
   });
-  void formatClock;
 }
 
 function boot() {
@@ -673,9 +650,4 @@ function boot() {
   requestAnimationFrame(renderFrame);
 }
 
-function setControlHint() {
-  gameState.setHint(`${formatClock(missionManager.active?.elapsed ?? 0)} · ALT ${Math.round(flight.state.altFt)} FT`, 0.8);
-}
-
-void setControlHint;
 boot();
