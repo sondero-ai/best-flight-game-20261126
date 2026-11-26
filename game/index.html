@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d2426">
+<title>Kestrel Courier — Skyward Isles</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main id="stage" aria-label="Kestrel Courier, an arcade island flight game">
+  <canvas id="scene" width="1280" height="720" aria-label="Kestrel K-2 over the Cinder Reach archipelago"></canvas>
+  <div class="world-vignette" aria-hidden="true"></div>
+  <div class="world-grain" aria-hidden="true"></div>
+  <div id="hud" class="hud" aria-live="polite"></div>
+  <div id="screens" class="screens"></div>
+  <div id="bootError" class="boot-error" role="alert"><div><strong>Kestrel Courier could not start.</strong><span>WebGL is required. Try a current desktop Chrome window.</span></div></div>
+  <p id="status" class="sr-only" role="status" aria-live="polite">Kestrel Courier is loading.</p>
+  <noscript><div class="boot-error"><div><strong>JavaScript is required.</strong><span>Kestrel Courier is an interactive game.</span></div></div></noscript>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
